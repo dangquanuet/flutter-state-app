@@ -55,27 +55,30 @@ class CountModel with ChangeNotifier {
   }
 
   _getCounter() async {
-    final prefs = await SharedPreferences.getInstance();
-    final value = prefs.getInt(COUNTER_KEY);
-    if (value != null) {
-      count = value;
-    } else {
-      count = 0;
-    }
-    notifyListeners();
+    SharedPreferences.getInstance().then((value) {
+      final countValue = value.getInt(COUNTER_KEY);
+      if (countValue != null) {
+        count = countValue;
+      } else {
+        count = 0;
+      }
+      notifyListeners();
+    });
   }
 
   increaseCounter() async {
     count++;
     notifyListeners();
-    SharedPreferences.getInstance()
-        .then((value) => {value.setInt(COUNTER_KEY, count)});
+    SharedPreferences.getInstance().then((value) {
+      value.setInt(COUNTER_KEY, count);
+    });
   }
 
   decreaseCounter() async {
     count--;
     notifyListeners();
-    SharedPreferences.getInstance()
-        .then((value) => {value.setInt(COUNTER_KEY, count)});
+    SharedPreferences.getInstance().then((value) {
+      value.setInt(COUNTER_KEY, count);
+    });
   }
 }
