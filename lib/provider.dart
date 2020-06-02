@@ -24,14 +24,17 @@ class ProviderPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: GestureDetector(
-            onTap: () => getCountModel(context).decreaseCounter(),
-            child: Consumer<CountModel>(builder: (context, countModel, child) {
+          onTap: () => getCountModel(context).decreaseCounter(),
+          child: Consumer<CountModel>(
+            builder: (context, countModel, child) {
               print("Consumer ${countModel.count}");
               return Text(
                 countModel.count.toString(),
                 style: Theme.of(context).textTheme.headline4,
               );
-            })),
+            },
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => getCountModel(context).increaseCounter(),
@@ -54,30 +57,36 @@ class CountModel with ChangeNotifier {
   }
 
   _getCounter() async {
-    SharedPreferences.getInstance().then((value) {
-      final countValue = value.getInt(COUNTER_KEY);
-      if (countValue != null) {
-        count = countValue;
-      } else {
-        count = 0;
-      }
-      notifyListeners();
-    });
+    SharedPreferences.getInstance().then(
+      (value) {
+        final countValue = value.getInt(COUNTER_KEY);
+        if (countValue != null) {
+          count = countValue;
+        } else {
+          count = 0;
+        }
+        notifyListeners();
+      },
+    );
   }
 
   increaseCounter() async {
     count++;
     notifyListeners();
-    SharedPreferences.getInstance().then((value) {
-      value.setInt(COUNTER_KEY, count);
-    });
+    SharedPreferences.getInstance().then(
+      (value) {
+        value.setInt(COUNTER_KEY, count);
+      },
+    );
   }
 
   decreaseCounter() async {
     count--;
     notifyListeners();
-    SharedPreferences.getInstance().then((value) {
-      value.setInt(COUNTER_KEY, count);
-    });
+    SharedPreferences.getInstance().then(
+      (value) {
+        value.setInt(COUNTER_KEY, count);
+      },
+    );
   }
 }
