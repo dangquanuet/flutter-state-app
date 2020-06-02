@@ -23,16 +23,15 @@ class ProviderPage extends StatelessWidget {
     print("Scaffold");
     return Scaffold(
       body: Center(
-        child: Consumer<CountModel>(builder: (context, countModel, child) {
-          print("Consumer ${countModel.count}");
-          return GestureDetector(
+        child: GestureDetector(
             onTap: () => getCountModel(context).decreaseCounter(),
-            child: Text(
-              countModel.count.toString(),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          );
-        }),
+            child: Consumer<CountModel>(builder: (context, countModel, child) {
+              print("Consumer ${countModel.count}");
+              return Text(
+                countModel.count.toString(),
+                style: Theme.of(context).textTheme.headline4,
+              );
+            })),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => getCountModel(context).increaseCounter(),
