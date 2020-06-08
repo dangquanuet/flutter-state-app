@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterstateapp/provider.dart';
-import 'package:flutterstateapp/stream.dart';
-import 'package:provider/provider.dart';
+import 'bloc.dart';
 
 void main() {
 //  runApp(StateApp());
@@ -11,7 +9,7 @@ void main() {
 //    child: ProviderApp(),
 //  ));
 
-//  runApp(BlocApp());
+  runApp(BlocApp());
 
-  runApp(StreamApp());
+//  runApp(StreamApp());
 }

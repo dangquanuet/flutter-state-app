@@ -41,18 +41,29 @@ class BlocApp extends StatelessWidget {
 class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final counterBloc = BlocProvider.of<CounterBloc>(context);
+//    final counterBloc = BlocProvider.of<CounterBloc>(context);
+    final counterBloc = context.bloc<CounterBloc>();
     print("build");
+
     return Scaffold(
-      body: BlocBuilder<CounterBloc, int>(builder: (context, count) {
-        print("center $count");
-        return Center(
-          child: Text(
-            '$count',
-            style: TextStyle(fontSize: 24.0),
-          ),
-        );
-      }),
+      body: BlocBuilder<CounterBloc, int>(
+        condition: (previousCount, count) {
+          if (previousCount != count) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+        builder: (context, count) {
+          print("center $count");
+          return Center(
+            child: Text(
+              '$count',
+              style: TextStyle(fontSize: 24.0),
+            ),
+          );
+        },
+      ),
       floatingActionButton: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.end,
@@ -68,10 +79,11 @@ class CounterPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
-                child: Icon(Icons.remove),
-                onPressed: () {
-                  counterBloc.add(CounterEvent.decrement);
-                }),
+              child: Icon(Icons.remove),
+              onPressed: () {
+                counterBloc.add(CounterEvent.decrement);
+              },
+            ),
           ),
         ],
       ),
