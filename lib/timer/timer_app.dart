@@ -65,7 +65,7 @@ class Timer extends StatelessWidget {
                 ),
               ),
               BlocBuilder<TimerBLoc, TimerState>(
-                condition: (previousState, state) =>
+                buildWhen: (previousState, state) =>
                     state.runtimeType != previousState.runtimeType,
                 builder: (context, state) => UserActions(),
               )

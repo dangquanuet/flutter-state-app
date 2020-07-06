@@ -14,9 +14,8 @@ class TimerBLoc extends Bloc<TimerEvent, TimerState> {
 
   TimerBLoc({@required Ticker ticker})
       : assert(ticker != null),
-        _ticker = ticker;
+        _ticker = ticker, super(null);
 
-  @override
   TimerState get initialState => Ready(_duration);
 
   @override

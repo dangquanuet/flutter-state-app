@@ -15,7 +15,7 @@ export 'post_state.dart';
 class PostBLoc extends Bloc<PostEvent, PostState> {
   final http.Client httpClient;
 
-  PostBLoc({@required this.httpClient});
+  PostBLoc({@required this.httpClient}) : super(null);
 
   @override
   PostState get initialState => PostUninitialized();
