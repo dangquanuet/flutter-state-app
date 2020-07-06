@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+void main() {
+  runApp(ChangeNotifierProvider(
+    create: (context) => CountModel(),
+    child: ProviderApp(),
+  ));
+}
+
+
 /// provider sample
 class ProviderApp extends StatelessWidget {
   @override

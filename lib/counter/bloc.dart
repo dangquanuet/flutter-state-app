@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+void main() {
+  runApp(BlocApp());
+}
+
+
 /// bloc
 enum CounterEvent { increment, decrement }
 
 class CounterBloc extends Bloc<CounterEvent, int> {
+  CounterBloc(int initialState) : super(initialState);
+
   @override
   int get initialState => 0;
 
@@ -31,7 +38,7 @@ class BlocApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: BlocProvider<CounterBloc>(
-        create: (context) => CounterBloc(),
+        create: (context) => CounterBloc(0),
         child: CounterPage(),
       ),
     );
@@ -47,7 +54,7 @@ class CounterPage extends StatelessWidget {
 
     return Scaffold(
       body: BlocBuilder<CounterBloc, int>(
-        condition: (previousCount, count) {
+        buildWhen: (previousCount, count) {
           if (previousCount != count) {
             return true;
           } else {

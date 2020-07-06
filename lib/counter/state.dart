@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(StateApp());
+}
+
+
 /// setState sample
 class StateApp extends StatelessWidget {
   @override

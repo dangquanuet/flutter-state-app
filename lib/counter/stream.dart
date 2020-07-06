@@ -3,7 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// provider sample
+void main() {
+  runApp(StreamApp());
+}
+
+// stream
 class StreamApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
