@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class User{
@@ -38,7 +39,7 @@ class Screen1 extends StatelessWidget {
       child: Center(
         child: GestureDetector(
           onTap: () async {
-            Navigator.of(context).pushNamed(Routes.screen2);
+//            Navigator.of(context).pushNamed(Routes.screen2);
           },
           child: Text(
             "screen 1",
